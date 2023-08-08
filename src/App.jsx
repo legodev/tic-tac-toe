@@ -35,7 +35,7 @@ function App() {
       setWinner(false);
     }
     w.localStorage.setItem("board", JSON.stringify(newBoard));
-    w.localStorage.setItem("turn", turn);
+    w.localStorage.setItem("turn", newTurn);
   };
   const resetGame = () => {
     setBoard(Array(9).fill(null));
