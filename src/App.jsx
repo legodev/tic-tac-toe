@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import { Square } from "./components/Square";
 import { TURNS } from "./constants";
@@ -7,13 +7,13 @@ import { checkWinner } from "./logic/checkwinner";
 import { WinnerModal } from "./components/WinnerModal";
 
 function App() {
-  const w = window
+           const w = window;
   const [board, setBoard] = useState(() => {
     const boardFromStorage = w.localStorage.getItem("board");
     return boardFromStorage
       ? JSON.parse(boardFromStorage)
       : Array(9).fill(null);
-  });
+  }); 
   const [turn, setTurn] = useState(() => {
     const turnFromStorage = w.localStorage.getItem("turn");
     return turnFromStorage ?? TURNS.X;
@@ -48,6 +48,10 @@ function App() {
   const checkEndGame = (newBoard) => {
     return newBoard.every((square) => square !== null);
   };
+
+  useEffect(() => {
+    console.log("Hubo un ganador")
+  }, [winner]);
 
   return (
     <main className="board">
